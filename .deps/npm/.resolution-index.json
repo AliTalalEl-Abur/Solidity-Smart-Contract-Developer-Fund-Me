@@ -1,0 +1,10 @@
+{
+  "FundMe.sol": {
+    "__sources__": {
+      "FundMe.sol": {
+        "content": "// Get funds from users\r\n// Withdraw\r\n// Set a minimum funding value in USD\r\n\r\n// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.1;\r\n\r\ncontract FundMe\r\n{\r\n    function fund() public {}\r\n\r\n    function withfraw() public {}\r\n}",
+        "file": "FundMe.sol"
+      }
+    }
+  }
+}
