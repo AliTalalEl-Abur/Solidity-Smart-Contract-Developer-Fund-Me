@@ -25,12 +25,19 @@ contract FundMe {
     //myValue = myValue + 2;
     require(msg.value.getConversionRate() >= minimumUsd, "didn't send enough ETH");//1e18, "didn't send enough ETH"); // 1e18 = 1 ETH = 1000000000000000000 = 1 * 10 **18
     funders.push(msg.sender);
-    addressToAmountFunded[msg.sender] = addressToAmountFunded[msg.sender] + msg.value;
-    // What is a revert?
+    addressToAmountFunded[msg.sender] += msg.value;
     // Undo any actions tha have been done, and send the remaining gas back
 
     }
 
-    //function withfraw() public {}
+    function withfraw() public {
+        // for loop
+        // [1,2,3,4]
+        //  0,1,2,3
+        for(uint256 funderIndex = 0;  funderIndex <funders.length; funderIndex++){
+            address funder = funders[funderIndex];
+            addressToAmountFunded[funder] = 0;
+        }
+    }
 
 }

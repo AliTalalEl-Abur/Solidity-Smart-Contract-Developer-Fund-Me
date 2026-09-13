@@ -62,6 +62,13 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withfraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -100,11 +107,11 @@
 			]
 		},
 		"FundMe.sol": {
-			"keccak256": "0x5fbe4bd5ebd91269480641d335aafedd9029a23e4178084f6c778cd4566de7ef",
+			"keccak256": "0x6c7413b1e067acf59e78a27ba9481f891410cbf6efa3372999c433a3dce8f16f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1ee3eb25bfc12ead70ffbd220475686c43ff68efa81dd8eebdbd538252f86959",
-				"dweb:/ipfs/QmNyLqAoggLzA95vLDPZbLg9tJNwibNbHvyskHwxUYMtY7"
+				"bzz-raw://76f0064a6b274c1cb8fe4c9cb94d43d6c5acfd76e70ff5e47b144c55968b4141",
+				"dweb:/ipfs/QmNy59EJcbGWTYjAmDyTZUPNZR6VEDikq4qaCMtrHghR2q"
 			]
 		},
 		"PriceConverter.sol": {
