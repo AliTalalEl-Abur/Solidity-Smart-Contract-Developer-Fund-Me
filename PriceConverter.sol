@@ -37,5 +37,3 @@ library PriceConverter{
     
 }
 
-}
-

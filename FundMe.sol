@@ -6,7 +6,7 @@
 
 pragma solidity ^0.8.19;
 
-import {PriceConverter} from "./PriceCoverter.sol"
+import {PriceConverter} from "./PriceConverter.sol";
 
 contract FundMe {
     using PriceConverter for uint256;
@@ -23,7 +23,7 @@ contract FundMe {
     // Have a minimum $ sent $5
     // 1. How do we send ETH to this contract?
     //myValue = myValue + 2;
-    require(msg.value.getConversionRate()) >= minimumUsd, "didn't send enough ETH");//1e18, "didn't send enough ETH"); // 1e18 = 1 ETH = 1000000000000000000 = 1 * 10 **18
+    require(msg.value.getConversionRate() >= minimumUsd, "didn't send enough ETH");//1e18, "didn't send enough ETH"); // 1e18 = 1 ETH = 1000000000000000000 = 1 * 10 **18
     funders.push(msg.sender);
     addressToAmountFunded[msg.sender] = addressToAmountFunded[msg.sender] + msg.value;
     // What is a revert?
