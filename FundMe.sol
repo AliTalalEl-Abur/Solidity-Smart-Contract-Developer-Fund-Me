@@ -4,12 +4,12 @@
 
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.1;
+pragma solidity ^0.8.19;
 
-import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
-
+import {PriceConverter} from "./PriceCoverter.sol"
 
 contract FundMe {
+    using PriceConverter for uint256;
 
     //uint256 public myValue = 1;
     uint256 public minimumUsd = 5e18;
@@ -18,11 +18,12 @@ contract FundMe {
     mapping(address funder=> uint256 amountFunded) public addressToAmountFunded;
 
     function fund() public payable {
+        msg.value.getConversionRate();
     // Allow users to send $
     // Have a minimum $ sent $5
     // 1. How do we send ETH to this contract?
     //myValue = myValue + 2;
-    require(getConversionRate(msg.value) >= minimumUsd, "didn't send enough ETH");//1e18, "didn't send enough ETH"); // 1e18 = 1 ETH = 1000000000000000000 = 1 * 10 **18
+    require(msg.value.getConversionRate()) >= minimumUsd, "didn't send enough ETH");//1e18, "didn't send enough ETH"); // 1e18 = 1 ETH = 1000000000000000000 = 1 * 10 **18
     funders.push(msg.sender);
     addressToAmountFunded[msg.sender] = addressToAmountFunded[msg.sender] + msg.value;
     // What is a revert?
@@ -32,32 +33,4 @@ contract FundMe {
 
     //function withfraw() public {}
 
-    function getPrice() public view returns(uint256){
-        // Address 0x694AA1769357215DE4FAC081bf1f309aDC325306
-        // ABI
-        AggregatorV3Interface priceFeed = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306);
-        (, int256 price, , , ) = priceFeed.latestRoundData();
-
-
-        // Price of ETH in terms of USD
-        // 200000000000
-        return uint(price * 1e10);
-    }
-
-    function getConversionRate(uint256 ethAmount) public view returns (uint256){
-        // 1 ETH?
-        // 2000_0000000000000000
-        uint256 ethPrice = getPrice();
-        // 2000_0000000000000000 * 1 ETH(1_0000000000000000)/1E18;
-        // $2000 = 1 ETH
-        uint256 ethAmountInUsd = (ethPrice * ethAmount) / 1e18;
-        return ethAmountInUsd;
-    }
-
-    function getVersion() public view returns (uint256){
-       return AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306).version();
-
-    }
-
-    
 }
