@@ -2,7 +2,7 @@
   "FundMe.sol": {
     "__sources__": {
       "FundMe.sol": {
-        "content": "// Get funds from users\r\n// Withdraw\r\n// Set a minimum funding value in USD\r\n\r\n// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.1;\r\n\r\ncontract FundMe\r\n{\r\n    function fund() public {}\r\n\r\n    function withfraw() public {}\r\n}",
+        "content": "// Get funds from users\r\n// Withdraw\r\n// Set a minimum funding value in USD\r\n\r\n// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.1;\r\n\r\ncontract FundMe {\r\n    function fund() public payable {\r\n    // Allow users to send $\r\n    // Have a minimum $ sent\r\n    // 1. How do we send ETH to this contract?\r\n    require(msg.value > 1e18, \"didn't send enough ETH\"); // 1e18 = 1 ETH = 1000000000000000000 = 1 * 10 **18\r\n    }\r\n    //function withfraw() public {}\r\n}",
         "file": "FundMe.sol"
       }
     }
