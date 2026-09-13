@@ -8,6 +8,7 @@ pragma solidity ^0.8.19;
 
 import {PriceConverter} from "./PriceConverter.sol";
 
+error NotOwner();
 contract FundMe {
     using PriceConverter for uint256;
 
@@ -60,13 +61,15 @@ contract FundMe {
         //(call)
         (bool callSuccess, bytes memory dataReturned) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed");
+        revert();
 
         //msg.sender = adress
         //payable(msg.sender) = payable address
     }
 
     modifier onlyOwner(){
-        require(msg.sender == i_owner, "Sender is not owner!!" );
+        //require(msg.sender == i_owner, "Sender is not owner!!" );
+        if(msg.sender != i_owner){revert NotOwner(); }
         _;
     }
 
